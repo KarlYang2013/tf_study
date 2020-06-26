@@ -34,7 +34,6 @@ w1 = tf.Variable(tf.random_normal([2,1], stddev = 1, seed = 1))
 y = tf.matmul(x,w1)
 
 #定义损失以及反向传播的优化方法
-loss = tf.reduce_mean(tf.square(y-y_))#计算均方误差
 loss = tf.reduce_sum(tf.where(tf.greater(y,y_),(y - y_)*COST,(y_ - y)*PROFIT))
 train_step = tf.train.GradientDescentOptimizer(0.001).minimize(loss)
 
@@ -44,7 +43,6 @@ with tf.Session() as sess:
 
     #输出未经训练的参数
     print("w1:\n",sess.run(w1))
-    print("w2:\n",sess.run(w2))
 
     #训练模型
     STEPS = 3000
@@ -59,5 +57,4 @@ with tf.Session() as sess:
 
     #打印训练后的参数取值
     print("w1:\n", sess.run(w1))
-    print("w2:\n", sess.run(w2))
     tf.greater
